@@ -1,82 +1,98 @@
 #include <iostream>
 #include<stdio.h>
 #include <stdlib.h>
-using namespace std;
+#include<conio.h>
+#include <iomanip>
 
-/* Program do cwiczenia 2 */
+/* Poprawa cwiczenie 2 */
 
 int main() {
-	int N, LW, rozmiar, a, b, x, y, wynik = 1, wybor, powtorzenie;
-	double sum;
-	string s = "*";
+	int lastElement, numbersOfRows, size, root, fractional, result = 1, wybor, repeat, keyPress;
+	double summary = 0;
 do {
-	cout<<" ======\n |MENU|\n ======\n Wybierz numer zadania:\n\n 1 - Suma \n 2 - Polowa piramidy \n 3 - Tabliczka mnozenia \n 4 - Potegowanie \n\n Aby potwierdzic wybor nacisnij ENTER\n";
-	cin>>wybor;
+	std::cout << "\t|Menu Glowne| \n\n\t1 - Suma \n\t2 - Polowa choinki \n\t3 - Tabliczka mnozenia \n\t4 - Potegowanie \n\nENTER, aby potwierdzic wybor.\n";
+	std::cin >> keyPress;
 	system("CLS");
-	switch (wybor){
+	switch (keyPress){
 		case 1:
-		// SUMA
-			cout<<"Podaj ostatni element sumy: ";
-			cin>>N;
-			while (N < 1){
-			cout<<"Ostatni element musi byc wiekszy badz rowny 1!\n Podaj ponownie ostatni element:";
-			cin>>N;
+// SUMA
+			std::cout << "Podaj ostatni element sumy: ";
+			std::cin >> lastElement;
+			system("CLS");
+			while (lastElement < 1){
+			std::cout << "Ostatni element musi byc >= 1!\n Wprowadz ponownie ostatni element: ";
+			std::cin >> lastElement;
+			system("CLS");
 			}
-			if (N >= 1){
-				for (float i = 1; i <= N; i++){
-					sum = (i+1)/(2 * i * i + 1);
-					}
-				cout<<"Wynik sumowania "<<N<<" elementow wedlug wzoru z zadania pierwszego to "<<sum<<"\n";
-			} else {
-				cout<<"ups, cos poszlo nie tak!"<<endl;
+			for (float i = 1; i <= lastElement; i++){
+				summary = (i + 1) / (2 * i * i + 1);
 				}
+			std::cout << "Wynik sumowania to " << lastElement << " elementow to: " << summary << "\n\n";
 		break;
 		case 2:
-		// POLOWA PIRAMIDY
-			cout<<"Podaj liczbe wierszy: ";
-			cin>>LW;
-			for (int i = 0; i <= LW-1; i++){
-				for (int j=0; j <= i; j++){
-					cout<<s;
-				}
-				cout<<"\n";
+// POLOWA CHOINKI
+			std::cout << "Wprowadz liczbe wierszy: ";
+			std::cin >> numbersOfRows;
+			system("CLS");
+			while (numbersOfRows < 1){
+				std::cout << "Liczba musi byc (>= 1)! \n Wprowadz ponownie: ";
+				std::cin >> numbersOfRows;	
+				system("CLS");
 			}
+			std::cout << "Oto Twoja polowka :) \n\n";
+			for (int i = 0; i <= numbersOfRows-1; i++){
+				for (int j=0; j <= i; j++){
+					std::cout << "*";
+				}
+				std::cout << "\n";
+			}
+			std::cout << "\n";
 		break;
 		case 3:
-		// TABLICZKA MNOZENIA
-			cout<<"Podaj liczbe w przedziele od 1 do 10: ";
-			cin>>rozmiar;
-			while (rozmiar < 1 || rozmiar > 10){
-			cout<<"Liczba musi byc w przedziale od 1 do 10!\n Podaj liczbe w przedziale: ";
-			cin>>rozmiar;
+// TABLICZKA MNOZENIA
+			std::cout << "Do ilu liczb chcesz wyswietlic tabliczke? \n Wprowadz wartosc od 1 do 10: ";
+			std::cin >> size;
+			std::cout << "\n";
+			system("CLS");
+			while (size < 1 or size > 10){
+			std::cout << "Podana liczba jest poza przedzialem <1,10>\n Wprowadz ponownie: ";
+			std::cin >> size;
+			system("CLS");
 			}	
-			for(int i = 1; i <= rozmiar; i++){
-    			for(int j = 1; j <= rozmiar; j++){
-        			cout<<"\t"<<i*j;
+			std::cout << "Ponizej Twoja tabliczka mnozenia.\n\n";
+			for(int i = 1; i <= size; i++){
+    			for(int j = 1; j <= size; j++){
+        			std::cout << std::setw(4) << i * j;
    				}
-   				cout<<"\n";
+   				std::cout << "\n";
    			}
+   			std::cout << "\n";
    		break;
 		case 4:
-   		// POTEGOWANIE
-   			cout<<"Podaj liczbe ktora chcesz potegowac: ";
-   			cin>>x;
-   			cout<<"Podaj do ktorej potegi podniesc Twoja liczbe: ";
-   			cin>>y;
-   			while (y < 0){
-   				cout<<"Potega musi byc wieksza badz rowna zera\n Podaj liczbe: ";
-   				cin>>y;
+// POTEGOWANIE
+   			std::cout << "Podaj liczbe ktora chcesz potegowac: ";
+   			std::cin >> root;
+   			std::cout << "Podaj do ktorej potegi podniesc Twoja liczbe: ";
+   			std::cin >> fractional;
+   			std::cout << "\n";
+   			
+   			while (fractional < 0){
+   				std::cout << "Potega musi byc wieksza badz rowna zera\n Podaj liczbe: ";
+   				std::cin >> fractional;
    			}
-   			for (int i = 0; i < y; i++){
-   				wynik*=x;
+   			
+   			for (int i = 0; i < fractional; i++){
+   				result *= root;
    			}
-   			cout<<"Wynik potegowania to: "<<wynik<<endl;
+   			std::cout << "Wynik potegowania to: " << result << "\n\n";
    		break;
+   		default:
+   			std::cout << "Oops, ";
    }
-   	cout<<"czy powtorzyc (0-nie, 1-tak)?\n";
-   	cin>>powtorzenie;
+   	std::cout << "czy chcesz powtorzyc (0-nie | 1-tak)?\n";
+   	std::cin >> repeat;
    	system("CLS");
 }
-while (powtorzenie == 1);
-cout<<"DO ZOBACZENIA!";
+while (repeat == 1);
+	std::cout << "Dzieki, do zobaczenia!";
 }
